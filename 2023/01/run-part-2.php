@@ -4,6 +4,11 @@ namespace Nsbx\AdventOfCode;
 
 require 'vendor/autoload.php';
 
+$inputContent = file_get_contents(__DIR__ . '/input.txt');
+
+$inputArray = explode("\r", $inputContent);
+$inputArray = array_values(array_filter($inputArray)); // remove empty line
+
 const NUMBER_TO_WORDS = [
     1 => 'one',
     2 => 'two',
@@ -15,10 +20,6 @@ const NUMBER_TO_WORDS = [
     8 => 'eight',
     9 => 'nine',
 ];
-
-$inputContent = file_get_contents(__DIR__ . '/input.txt');
-
-$inputArray = explode("\r", $inputContent);
 
 $calibrationValues = [];
 
@@ -41,10 +42,6 @@ foreach ($inputArray as $item) {
     }
 
     $calibrationValue = $first . $last;
-
-    if ($calibrationValue === '') {
-        continue;
-    }
 
     $calibrationValues[] = $calibrationValue;
 }

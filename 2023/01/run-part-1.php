@@ -7,6 +7,7 @@ require 'vendor/autoload.php';
 $inputContent = file_get_contents(__DIR__ . '/input.txt');
 
 $inputArray = explode("\r", $inputContent);
+$inputArray = array_values(array_filter($inputArray)); // remove empty line
 
 $calibrationValues = [];
 
@@ -19,10 +20,6 @@ foreach ($inputArray as $item) {
     $last = current($matches);
 
     $calibrationValue = $first . $last;
-
-    if ($calibrationValue === '') {
-        continue;
-    }
 
     $calibrationValues[] = $calibrationValue;
 }
